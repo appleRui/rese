@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ShopController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [ShopController::class, 'index']);
+
 Route::middleware('auth')->group(function () {
-    // ルートパス
-    Route::get('/', function () {
-        return view('welcome');
-    });
     
     Route::get('/dashboard', function () {
         return view('dashboard');
