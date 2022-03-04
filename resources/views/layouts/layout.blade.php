@@ -24,7 +24,8 @@
             <li><a class="dropdown-item" href="{{ route('shop.index') }}">店舗一覧</a></li>
             <li>
             <li><a class="dropdown-item" href="{{ route('favorites') }}">お気に入り一覧</a></li>
-              <hr class="dropdown-divider">
+            <li><a class="dropdown-item" href="{{ route('profile') }}">ユーザー情報</a></li>
+            <hr class="dropdown-divider">
             </li>
             <li>
               <form method="POST" action="http://localhost:8000/logout">

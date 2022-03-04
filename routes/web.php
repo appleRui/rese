@@ -19,15 +19,18 @@ Route::get('/', [ShopController::class, 'index'])->name('shop.index');
 Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
 Route::middleware('auth')->group(function () {
-    
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    
+
+    Route::get('/profile', function () {
+        return view('profile');
+    })->name('profile');
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites');
     Route::post('/shop/{id}/like', [ShopController::class, 'like'])->name('shop.like');
     Route::post('/shop/{id}/unlike', [ShopController::class, 'unlike'])->name('shop.unlike');
 });
 
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
