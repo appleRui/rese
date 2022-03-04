@@ -14,14 +14,17 @@ use App\Http\Controllers\ShopController;
 |
 */
 
-Route::get('/', [ShopController::class, 'index'])->name('shop.index');;
-Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');;
+Route::get('/', [ShopController::class, 'index'])->name('shop.index');
+Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
 Route::middleware('auth')->group(function () {
     
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::post('/shop/{id}/like', [ShopController::class, 'like'])->name('shop.like');
+    Route::post('/shop/{id}/unlike', [ShopController::class, 'unlike'])->name('shop.unlike');
 });
 
 

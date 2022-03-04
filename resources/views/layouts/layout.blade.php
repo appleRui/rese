@@ -14,10 +14,22 @@
   <header class="p-2 mb-2 border-bottom">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto h1 text-decoration-none">Resw</a>
+        <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto h1 text-decoration-none">Rese</a>
         <ul class="nav nav-pills">
           <li class="nav-item">
-            <a href="/logout" class="nav-link px-2 link-secondary">ログアウト</a>
+            @if(auth()->user())
+            <span>{{ auth()->user()->name }}様</span>
+            @endif
+          </li>
+          <li class="nav-item">
+            @if(!is_null(auth()->user()))
+            <form method="POST" action="http://localhost:8000/logout">
+              @csrf
+              <a class="nav-link px-2 link-secondary" href="http://localhost:8000/logout" onclick="event.preventDefault();this.closest('form').submit();">Log Out</a>
+            </form>
+            @else
+            <a href="{{ route('login') }}" class="nav-link px-2 link-secondary">ログイン</a>
+            @endif
           </li>
         </ul>
       </div>

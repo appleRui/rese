@@ -5,13 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-
-class Shop extends Model
+class Like extends Model
 {
     use HasFactory;
-
-    public function likes()
-    {
-        return $this->hasMany(Like::class);
-    }
+    protected $fillable = ['user_id, shop_id'];
 }
