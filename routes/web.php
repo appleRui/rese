@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\FavoriteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-
+    
+    Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites');
     Route::post('/shop/{id}/like', [ShopController::class, 'like'])->name('shop.like');
     Route::post('/shop/{id}/unlike', [ShopController::class, 'unlike'])->name('shop.unlike');
 });

@@ -32,7 +32,8 @@ class ShopController extends Controller
         $like->shop_id = Shop::find($id)->id;
         $like->save();
         $items = Shop::all();
-        return redirect()->route('shop.index');
+        // return redirect()->route('shop.index');
+        return redirect()->back();
     }
 
     public function unlike($shop_id)
@@ -43,7 +44,8 @@ class ShopController extends Controller
         $like = Like::where('shop_id', $shop_id)->where('user_id', auth()->user()->id);
         $like->delete();
         $items = Shop::all();
-        return redirect()->route('shop.index');
+        // return redirect()->route('shop.index');
+        return redirect()->back();
     }
 
 }
