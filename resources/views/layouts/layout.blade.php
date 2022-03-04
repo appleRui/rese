@@ -15,7 +15,29 @@
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto h1 text-decoration-none">Rese</a>
-        <ul class="nav nav-pills">
+        <div class="dropdown">
+          @if(!is_null(auth()->user()))
+          <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ auth()->user()->name }}様
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+            <li><a class="dropdown-item" href="{{ route('shop.index') }}">店舗一覧</a></li>
+            <li>
+            <li><a class="dropdown-item" href="{{ route('favorites') }}">お気に入り一覧</a></li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <form method="POST" action="http://localhost:8000/logout">
+                @csrf
+                <a class="dropdown-item" href="http://localhost:8000/logout" onclick="event.preventDefault();this.closest('form').submit();">ログアウト</a>
+              </form>
+            </li>
+          </ul>
+          @else
+          <a href="{{ route('login') }}" class="nav-link px-2 link-secondary">ログイン</a>
+          @endif
+        </div>
+        <!-- <ul class="nav nav-pills">
           <li class="nav-item">
             @if(auth()->user())
             <span>{{ auth()->user()->name }}様</span>
@@ -31,7 +53,7 @@
             <a href="{{ route('login') }}" class="nav-link px-2 link-secondary">ログイン</a>
             @endif
           </li>
-        </ul>
+        </ul> -->
       </div>
     </div>
   </header>
