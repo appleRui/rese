@@ -14,7 +14,8 @@ use App\Http\Controllers\ShopController;
 |
 */
 
-Route::get('/', [ShopController::class, 'index']);
+Route::get('/', [ShopController::class, 'index'])->name('shop.index');;
+Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');;
 
 Route::middleware('auth')->group(function () {
     
