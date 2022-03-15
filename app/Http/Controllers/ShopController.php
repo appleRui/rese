@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Like;
-use App\Models\User;
 
 class ShopController extends Controller
 {
@@ -31,8 +30,6 @@ class ShopController extends Controller
         $like->user_id = auth()->user()->id;
         $like->shop_id = Shop::find($id)->id;
         $like->save();
-        $items = Shop::all();
-        // return redirect()->route('shop.index');
         return redirect()->back();
     }
 
@@ -43,7 +40,6 @@ class ShopController extends Controller
         }
         $like = Like::where('shop_id', $shop_id)->where('user_id', auth()->user()->id);
         $like->delete();
-        $items = Shop::all();
         // return redirect()->route('shop.index');
         return redirect()->back();
     }

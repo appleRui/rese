@@ -24,6 +24,7 @@
             <li><a class="dropdown-item" href="{{ route('shop.index') }}">店舗一覧</a></li>
             <li>
             <li><a class="dropdown-item" href="{{ route('favorites') }}">お気に入り一覧</a></li>
+            <li><a class="dropdown-item" href="{{ route('reserve.index') }}">予約一覧</a></li>
             <li><a class="dropdown-item" href="{{ route('profile') }}">ユーザー情報</a></li>
             <hr class="dropdown-divider">
             </li>
@@ -38,23 +39,6 @@
           <a href="{{ route('login') }}" class="nav-link px-2 link-secondary">ログイン</a>
           @endif
         </div>
-        <!-- <ul class="nav nav-pills">
-          <li class="nav-item">
-            @if(auth()->user())
-            <span>{{ auth()->user()->name }}様</span>
-            @endif
-          </li>
-          <li class="nav-item">
-            @if(!is_null(auth()->user()))
-            <form method="POST" action="http://localhost:8000/logout">
-              @csrf
-              <a class="nav-link px-2 link-secondary" href="http://localhost:8000/logout" onclick="event.preventDefault();this.closest('form').submit();">Log Out</a>
-            </form>
-            @else
-            <a href="{{ route('login') }}" class="nav-link px-2 link-secondary">ログイン</a>
-            @endif
-          </li>
-        </ul> -->
       </div>
     </div>
   </header>

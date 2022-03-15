@@ -42,7 +42,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    // いいねの数取得
+// いいねの数取得
     public function likes()
     {
         return $this->hasMany(Like::class);
@@ -51,5 +51,11 @@ class User extends Authenticatable
     // いいねしているか？
     public function liked($shop_id){
         return $this->likes()->where('user_id', $this->id)->where('shop_id', $shop_id)->exists();
+    }
+
+    // 予約一覧
+    public function reserves()
+    {
+        return $this->hasMany(Reservation::class);
     }
 }
