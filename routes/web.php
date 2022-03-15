@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ReservationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', function () {
         return view('profile');
     })->name('profile');
+
+    Route::get('/reserves', [ReservationController::class, 'index'])->name('reserve.index');
+    Route::post('/reserve/{id}/new', [ReservationController::class, 'new'])->name('reserve.new');
+    Route::get('/reserve/confirm', [ReservationController::class, 'confirm'])->name('reserve.confirm');
+    Route::post('/reserve/store', [ReservationController::class, 'store'])->name('reserve.store');
+    Route::get('/reserve/{id}/thanks', [ReservationController::class, 'thanks'])->name('reserve.thanks');
+
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites');
     Route::post('/shop/{id}/like', [ShopController::class, 'like'])->name('shop.like');
     Route::post('/shop/{id}/unlike', [ShopController::class, 'unlike'])->name('shop.unlike');
