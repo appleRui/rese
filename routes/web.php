@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/reserve/confirm', [ReservationController::class, 'confirm'])->name('reserve.confirm');
     Route::post('/reserve/store', [ReservationController::class, 'store'])->name('reserve.store');
     Route::get('/reserve/{id}/thanks', [ReservationController::class, 'thanks'])->name('reserve.thanks');
+    Route::delete('/reserve/{id}/', [ReservationController::class, 'destroy'])->name('reserve.destroy');
 
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites');
     Route::post('/shop/{id}/like', [ShopController::class, 'like'])->name('shop.like');

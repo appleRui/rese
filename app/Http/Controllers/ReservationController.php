@@ -57,8 +57,10 @@ class ReservationController extends Controller
         return view('reserve.thanks', ['id' => $reserve->id ]);
     }
 
-    public function destry()
+    public function destroy($id)
     {
-        return null;
+        $reserve = Reservation::find($id);
+        $reserve->delete();
+        return redirect()->route('reserve.index');
     }
 }
