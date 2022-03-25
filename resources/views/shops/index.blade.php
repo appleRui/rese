@@ -41,6 +41,7 @@
 
             @endif
           </div>
+          <strong class="card-text">場所：{{ $item->prefecture['prefecture'] }}</strong>
           <p class="card-text">{{ $item['description'] }}</p>
         </div>
       </div>

@@ -40,6 +40,7 @@
             </form>
             @endif
           </div>
+          <strong class="card-text">場所：{{ $item->shop->prefecture['prefecture'] }}</strong>
           <p class="card-text">{{ $item->shop['description'] }}</p>
         </div>
       </div>

@@ -16,10 +16,11 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
-Route::get('/', [ShopController::class, 'index'])->name('shop.index');
-Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
 Route::middleware('auth')->group(function () {
+
+    Route::get('/shop/new', [ShopController::class, 'new'])->name('shop.new');
+    Route::post('/shop/create', [ShopController::class, 'create'])->name('shop.create');
 
     Route::get('/dashboard', function () {
         return view('dashboard');
@@ -34,11 +35,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/reserve/confirm', [ReservationController::class, 'confirm'])->name('reserve.confirm');
     Route::post('/reserve/store', [ReservationController::class, 'store'])->name('reserve.store');
     Route::get('/reserve/{id}/thanks', [ReservationController::class, 'thanks'])->name('reserve.thanks');
+    Route::delete('/reserve/{id}/', [ReservationController::class, 'destroy'])->name('reserve.destroy');
 
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites');
     Route::post('/shop/{id}/like', [ShopController::class, 'like'])->name('shop.like');
     Route::post('/shop/{id}/unlike', [ShopController::class, 'unlike'])->name('shop.unlike');
 });
 
+Route::get('/', [ShopController::class, 'index'])->name('shop.index');
+Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
 require __DIR__ . '/auth.php';

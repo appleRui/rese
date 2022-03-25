@@ -32,7 +32,7 @@ class ReservationController extends Controller
         if (!$sessionReserveData) {
             return redirect()->route('reserve.confirm');;
         }
-        return view('reserve.confirm', ['reserveData' => $sessionReserveData, 'name'=> auth()->user()->name, 'email' => auth()->user()->email, 'shop_name' => $shop->name]);
+        return view('reserve.confirm', ['reserveData' => $sessionReserveData, 'name'=> auth()->user()->name, 'email' => auth()->user()->email, 'shop' => $shop]);
     }
     
     public function store(Request $request)
@@ -57,8 +57,10 @@ class ReservationController extends Controller
         return view('reserve.thanks', ['id' => $reserve->id ]);
     }
 
-    public function destry()
+    public function destroy($id)
     {
-        return null;
+        $reserve = Reservation::find($id);
+        $reserve->delete();
+        return redirect()->route('reserve.index');
     }
 }
