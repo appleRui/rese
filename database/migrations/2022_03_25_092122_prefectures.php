@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Todos extends Migration
+class Prefectures extends Migration
 {
     /**
      * Run the migrations.
@@ -14,9 +14,9 @@ class Todos extends Migration
     public function up()
     {
         //
-        Schema::create('todos', function (Blueprint $table) {
+        Schema::create('prefectures', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('prefecture');
         });
     }
 
@@ -28,6 +28,6 @@ class Todos extends Migration
     public function down()
     {
         //
-        Schema::dropIfExists('todos');
+        Schema::dropIfExists('prefectures');
     }
 }

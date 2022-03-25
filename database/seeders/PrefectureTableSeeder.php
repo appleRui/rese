@@ -4,10 +4,9 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
 use \SplFileObject;
 
-class ShopTableSeeder extends Seeder
+class PrefectureTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,7 +16,7 @@ class ShopTableSeeder extends Seeder
     public function run()
     {
         //
-        $file = new SplFileObject('data/shops.csv');
+        $file = new SplFileObject('data/prefectures.csv');
         $file->setFlags(
             \SplFileObject::READ_CSV |
                 \SplFileObject::READ_AHEAD |
@@ -25,17 +24,11 @@ class ShopTableSeeder extends Seeder
                 \SplFileObject::DROP_NEW_LINE
         );
         $list = [];
-        $now = Carbon::now();
         foreach ($file as $line) {
             $list[] = [
-                "name" => $line[0],
-                "description" => $line[1],
-                "image_url" => $line[2],
-                "created_at" => $now,
-                "updated_at" => $now,
-                "prefecture_id" => rand(1,3)
+                "prefecture" => $line[0],
             ];
         }
-        DB::table("shops")->insert(array_slice($list, 1));
+        DB::table("prefectures")->insert(array_slice($list, 1));
     }
 }

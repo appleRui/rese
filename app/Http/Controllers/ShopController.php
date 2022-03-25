@@ -9,7 +9,8 @@ use App\Models\Like;
 class ShopController extends Controller
 {
     //
-    public function index(){
+    public function index()
+    {
 
         $items = Shop::all();
         return view('shops.index', ['items' => $items]);
@@ -23,7 +24,7 @@ class ShopController extends Controller
 
     public function like($id)
     {
-        if(!auth()->user()){
+        if (!auth()->user()) {
             return view('login');
         }
         $like = new Like();
@@ -34,14 +35,12 @@ class ShopController extends Controller
     }
 
     public function unlike($shop_id)
-    {   
+    {
         if (!auth()->user()) {
             return view('login');
         }
         $like = Like::where('shop_id', $shop_id)->where('user_id', auth()->user()->id);
         $like->delete();
-        // return redirect()->route('shop.index');
         return redirect()->back();
     }
-
 }

@@ -20,7 +20,11 @@
     </div>
     <div class="mt-2">
       <strong>店舗名</strong>
-      <p class="mt-2">{{ $shop_name }}</p>
+      <p class="mt-2">{{ $shop->name }}</p>
+    </div>
+    <div class="mt-2">
+      <strong>場所</strong>
+      <p class="mt-2">{{ $shop->prefecture->prefecture }}</p>
     </div>
     <div class="mt-2">
       <strong>予約日時</strong>

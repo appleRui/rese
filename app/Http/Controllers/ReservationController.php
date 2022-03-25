@@ -32,7 +32,7 @@ class ReservationController extends Controller
         if (!$sessionReserveData) {
             return redirect()->route('reserve.confirm');;
         }
-        return view('reserve.confirm', ['reserveData' => $sessionReserveData, 'name'=> auth()->user()->name, 'email' => auth()->user()->email, 'shop_name' => $shop->name]);
+        return view('reserve.confirm', ['reserveData' => $sessionReserveData, 'name'=> auth()->user()->name, 'email' => auth()->user()->email, 'shop' => $shop]);
     }
     
     public function store(Request $request)
