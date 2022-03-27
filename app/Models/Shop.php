@@ -10,6 +10,8 @@ class Shop extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name', 'description', 'image_url', 'prefecture_id'];
+
     public function likes()
     {
         return $this->hasMany(Like::class);
