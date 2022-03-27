@@ -16,15 +16,13 @@ use App\Http\Controllers\ReservationController;
 |
 */
 
-Route::get('/', [ShopController::class, 'index'])->name('shop.index');
-Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
 Route::middleware('auth')->group(function () {
 
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-
+    
     Route::get('/profile', function () {
         return view('profile');
     })->name('profile');
@@ -35,11 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/reserve/store', [ReservationController::class, 'store'])->name('reserve.store');
     Route::get('/reserve/{id}/thanks', [ReservationController::class, 'thanks'])->name('reserve.thanks');
     Route::delete('/reserve/{id}/', [ReservationController::class, 'destroy'])->name('reserve.destroy');
-
+    
     Route::get('/favorites', [FavoriteController::class, 'index'])->name('favorites');
     Route::post('/shop/{id}/like', [ShopController::class, 'like'])->name('shop.like');
     Route::post('/shop/{id}/unlike', [ShopController::class, 'unlike'])->name('shop.unlike');
 });
 
+Route::get('/', [ShopController::class, 'index'])->name('shop.index');
+Route::get('/search', [ShopController::class, 'search'])->name('shop.search');
+Route::get('/shop/{id}', [ShopController::class, 'show'])->name('shop.show');
 
 require __DIR__ . '/auth.php';

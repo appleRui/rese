@@ -3,27 +3,6 @@
 @section('title','ヘッダー')
 
 @section('content')
-
-<div class="my-5 text-center">
-  <h2 class="h5 mb-3">店舗を探す</h2>
-  <form class="row justify-content-center align-items-center" action="{{ route('shop.search') }}" method="get">
-    <div class="mb-3 col-auto">
-      <select selected class="form-control" name="prefecture_id" id="pref-form">
-        <option value="0">都道府県を選択</option>
-        @foreach($prefectures as $prefecture)
-        <option value="{{ $prefecture['id'] }}">{{ $prefecture['prefecture'] }}</option>
-        @endforeach
-      </select>
-    </div>
-    <div class="mb-3 col-auto">
-      <input class="form-control" type="text" name="shop_name" placeholder="店舗名">
-    </div>
-    <div class="mb-3 col-auto">
-      <input class="btn btn-success" type="submit" value="検索">
-    </div>
-  </form>
-</div>
-
 <ul class="d-flex flex-wrap justify-content-center list-unstyled">
   @foreach($items as $item)
   <li>
