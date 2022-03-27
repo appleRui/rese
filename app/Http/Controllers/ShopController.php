@@ -5,8 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Shop;
-use App\Models\Like;
 use App\Models\Prefecture;
+use App\Models\Like;
+use App\Models\Genre;
 
 class ShopController extends Controller
 {
@@ -14,7 +15,9 @@ class ShopController extends Controller
     public function index()
     {
         $items = Shop::all();
-        return view('shops.index', ['items' => $items]);
+        $prefectures = Prefecture::all();
+        $genres = Genre::all();
+        return view('shops.index', ['items' => $items, 'prefectures' => $prefectures, 'genres' => $genres]);
     }
 
     public function new()
@@ -63,5 +66,12 @@ class ShopController extends Controller
         $like = Like::where('shop_id', $shop_id)->where('user_id', auth()->user()->id);
         $like->delete();
         return redirect()->back();
+    }
+
+    public function search(Request $request){
+        $params = $request->query();
+        // $keyword = $params['prefecture_id'] . '・' . $params['shop_name'];
+        $items = Shop::serach($params)->get();
+        return view('shops.search', ['items' => $items]);
     }
 }

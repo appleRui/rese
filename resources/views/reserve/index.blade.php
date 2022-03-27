@@ -24,6 +24,7 @@
         </div>
         <div>
           <span class="d-block">場所：{{ $reserve->shop->prefecture->prefecture }}</span>
+          <span class="d-block">ジャンル：{{ $reserve->shop->genre->name }}</span>
           <span class="d-block">予約者: <date>{{ $reserve->user->name }}</date></span>
           <span class="d-block">予約日時: <date>{{ $reserve->start_at }}</date></span>
           <span>人数: <date>{{ $reserve->num_of_users }}</date></span>
