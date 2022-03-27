@@ -16,7 +16,7 @@ class ReservationController extends Controller
         return view('reserve.index', ['reserves' => $reserves]);
     }
 
-    public function new(Request $request, $id){
+    public function new($id, Request $request){
         $input = $request->all();
         $input['shop_id'] = intval($id); //Int
         $input['user_id'] = auth()->user()->id; // Int
