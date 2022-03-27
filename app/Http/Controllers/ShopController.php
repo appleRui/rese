@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Like;
+use App\Models\Prefecture;
 
 class ShopController extends Controller
 {
@@ -18,14 +19,20 @@ class ShopController extends Controller
 
     public function new()
     {
-        return view('shops.new');
+        $prefectures = Prefecture::all();
+        return view('shops.new', ['prefectures' => $prefectures]);
     }
 
     public function create(Request $request)
-    {   
+    {
+        $form = $request->all();
+        unset($form['_token']);
         $image = $request->file('image');
-        Storage::disk('s3')->putFile('/', $image);
-        
+        $s3_image = Storage::disk('s3')->putFile('/shop', $image);
+        $url = Storage::disk('s3')->url($s3_image);
+        $form['image_url'] = $url;
+        Shop::create($form);
+        return redirect()->route('shop.index');
     }
 
     public function show($id)
@@ -33,7 +40,7 @@ class ShopController extends Controller
         $shop = Shop::find($id);
         return view('shops.show', ['shop' => $shop]);
     }
-    
+
 
 
     public function like($id)
