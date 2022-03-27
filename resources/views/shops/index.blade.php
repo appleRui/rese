@@ -16,6 +16,14 @@
       </select>
     </div>
     <div class="mb-3 col-auto">
+      <select selected class="form-control" name="genre_id" id="pref-form">
+        <option value="0">ジャンルを選択</option>
+        @foreach($genres as $genre)
+        <option value="{{ $genre['id'] }}">{{ $genre['name'] }}</option>
+        @endforeach
+      </select>
+    </div>
+    <div class="mb-3 col-auto">
       <input class="form-control" type="text" name="shop_name" placeholder="店舗名">
     </div>
     <div class="mb-3 col-auto">
@@ -60,6 +68,7 @@
 
             @endif
           </div>
+          <strong class="d-block card-text">ジャンル：{{ $item->genre['name'] }}</strong>
           <strong class="card-text">場所：{{ $item->prefecture['prefecture'] }}</strong>
           <p class="card-text">{{ $item['description'] }}</p>
         </div>

@@ -33,9 +33,16 @@ class Shop extends Model
         return $this->belongsTo(Prefecture::class);
     }
 
+    public function genre()
+    {
+        return $this->belongsTo(Genre::class);
+    }
+
     public function scopeSerach(Builder $query, array $params): Builder
     {
         if (!empty($params['prefecture_id'])) $query->where('prefecture_id', $params['prefecture_id']);
+
+        if (!empty($params['genre_id'])) $query->where('genre_id', $params['genre_id']);
 
         if (!empty($params['shop_name'])){
             $esc_key = addcslashes($params['shop_name'], '%_\\');

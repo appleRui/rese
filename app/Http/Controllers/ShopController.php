@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Shop;
 use App\Models\Prefecture;
 use App\Models\Like;
+use App\Models\Genre;
 
 class ShopController extends Controller
 {
@@ -15,7 +16,8 @@ class ShopController extends Controller
 
         $items = Shop::all();
         $prefectures = Prefecture::all();
-        return view('shops.index', ['items' => $items, 'prefectures' => $prefectures]);
+        $genres = Genre::all();
+        return view('shops.index', ['items' => $items, 'prefectures' => $prefectures, 'genres' => $genres]);
     }
 
     public function show($id)

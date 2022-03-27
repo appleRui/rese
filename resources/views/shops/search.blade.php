@@ -3,7 +3,12 @@
 @section('title','ヘッダー')
 
 @section('content')
+
 <ul class="d-flex flex-wrap justify-content-center list-unstyled">
+  @if($items->isEmpty())
+  <p class="text-center">検索結果が見つかりませんでした</p>
+  @endif
+
   @foreach($items as $item)
   <li>
     <a class="text-decoration-none text-dark" href="{{ route('shop.show', ['id' => $item->id]) }}">
@@ -39,6 +44,7 @@
 
             @endif
           </div>
+          <strong class="d-block card-text">ジャンル：{{ $item->genre['name'] }}</strong>
           <strong class="card-text">場所：{{ $item->prefecture['prefecture'] }}</strong>
           <p class="card-text">{{ $item['description'] }}</p>
         </div>
