@@ -20,23 +20,23 @@ class ShopController extends Controller
         return view('shops.index', ['items' => $items, 'prefectures' => $prefectures, 'genres' => $genres]);
     }
 
-    public function new()
-    {
-        $prefectures = Prefecture::all();
-        $genres = Genre::all();
-        return view('shops.new', ['prefectures' => $prefectures, 'genres' => $genres]);
-    }
+    // public function new()
+    // {
+    //     $prefectures = Prefecture::all();
+    //     $genres = Genre::all();
+    //     return view('shops.new', ['prefectures' => $prefectures, 'genres' => $genres]);
+    // }
 
-    public function create(Request $request)
-    {
-        $form = $request->all();
-        unset($form['_token']);
-        $image = $request->file('image');
-        $s3_image = Storage::disk('s3')->putFile('/shop', $image);
-        $form['image_url'] = Storage::disk('s3')->url($s3_image);;
-        Shop::create($form);
-        return redirect()->route('shop.index');
-    }
+    // public function create(Request $request)
+    // {
+    //     $form = $request->all();
+    //     unset($form['_token']);
+    //     $image = $request->file('image');
+    //     $s3_image = Storage::disk('s3')->putFile('/shop', $image);
+    //     $form['image_url'] = Storage::disk('s3')->url($s3_image);;
+    //     Shop::create($form);
+    //     return redirect()->route('shop.index');
+    // }
 
     public function show($id)
     {
