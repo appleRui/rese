@@ -18,7 +18,7 @@ class Shop extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'description', 'image_url', 'prefecture_id'];
+    protected $fillable = ['name', 'description', 'image_url', 'prefecture_id', 'genre_id'];
 
     public function likes()
     {

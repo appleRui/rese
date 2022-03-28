@@ -23,7 +23,8 @@ class ShopController extends Controller
     public function new()
     {
         $prefectures = Prefecture::all();
-        return view('shops.new', ['prefectures' => $prefectures]);
+        $genres = Genre::all();
+        return view('shops.new', ['prefectures' => $prefectures, 'genres' => $genres]);
     }
 
     public function create(Request $request)
@@ -32,8 +33,7 @@ class ShopController extends Controller
         unset($form['_token']);
         $image = $request->file('image');
         $s3_image = Storage::disk('s3')->putFile('/shop', $image);
-        $url = Storage::disk('s3')->url($s3_image);
-        $form['image_url'] = $url;
+        $form['image_url'] = Storage::disk('s3')->url($s3_image);;
         Shop::create($form);
         return redirect()->route('shop.index');
     }
@@ -68,7 +68,8 @@ class ShopController extends Controller
         return redirect()->back();
     }
 
-    public function search(Request $request){
+    public function search(Request $request)
+    {
         $params = $request->query();
         // $keyword = $params['prefecture_id'] . '・' . $params['shop_name'];
         $items = Shop::serach($params)->get();
