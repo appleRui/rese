@@ -25,18 +25,19 @@ class ReservationRequest extends FormRequest
     {
         return [
             //
-            'num_of_users' => ['required', 'integer'],
-            'date' => ['required'],
+            'date' => ['required', 'after:yesterday', 'date'],
             'time' => ['required'],
+            'num_of_users' => ['required', 'integer'],
         ];
     }
 
     public function messages()
     {
         return [
-            'num_of_users.required' => '人数入力は必須です',
             'date.required' => '日付は必須です',
+            'date.after' => '日付は昨日以降の日付でなければならない',
             'time.required' => '時間は必須です',
+            'num_of_users.required' => '人数入力は必須です',
         ];
     }
 }
