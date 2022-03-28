@@ -90,4 +90,12 @@ class LoginRequest extends FormRequest
     {
         return Str::lower($this->input('email')).'|'.$this->ip();
     }
+
+    public function messages()
+    {
+        return [
+            'email.required' => 'メールアドレスは必須です',
+            'password.required' => 'パスワードは必須です',
+        ];
+    }
 }

@@ -8,7 +8,7 @@
   <h2 class="h5 mb-3">店舗を探す</h2>
   <form class="row justify-content-center align-items-center" action="{{ route('shop.search') }}" method="get">
     <div class="mb-3 col-auto">
-      <select selected class="form-control" name="prefecture_id" id="pref-form">
+      <select selected class="form-select" name="prefecture_id" id="pref-form">
         <option value="0">都道府県を選択</option>
         @foreach($prefectures as $prefecture)
         <option value="{{ $prefecture['id'] }}">{{ $prefecture['prefecture'] }}</option>
@@ -16,7 +16,7 @@
       </select>
     </div>
     <div class="mb-3 col-auto">
-      <select selected class="form-control" name="genre_id" id="pref-form">
+      <select selected class="form-select" name="genre_id" id="pref-form">
         <option value="0">ジャンルを選択</option>
         @foreach($genres as $genre)
         <option value="{{ $genre['id'] }}">{{ $genre['name'] }}</option>
@@ -68,6 +68,7 @@
 
             @endif
           </div>
+          
           <strong class="d-block card-text">ジャンル：{{ $item->genre['name'] }}</strong>
           <strong class="card-text">場所：{{ $item->prefecture['prefecture'] }}</strong>
           <p class="card-text">{{ $item['description'] }}</p>

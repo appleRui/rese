@@ -27,8 +27,12 @@
       <p class="mt-2">{{ $shop->prefecture->prefecture }}</p>
     </div>
     <div class="mt-2">
-      <strong>予約日時</strong>
-      <p class="mt-2">{{ $reserveData['start_at'] }}</p>
+      <strong>予約日</strong>
+      <p class="mt-2">{{ $reserveData['date'] }}</p>
+    </div>
+    <div class="mt-2">
+      <strong>予約時間</strong>
+      <p class="mt-2">{{ $reserveData['time'] }}</p>
     </div>
     <div class="mt-2 mb-2">
       <strong>人数</strong>

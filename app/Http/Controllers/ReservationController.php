@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Reservation;
 use App\Models\Shop;
+use App\Http\Requests\ReservationRequest;
 
 class ReservationController extends Controller
 {
@@ -12,11 +13,11 @@ class ReservationController extends Controller
     public function index()
     {
         $user = auth()->user();
-        $reserves = $user->reserves;
+        $a = $reserves = $user->reserves;
         return view('reserve.index', ['reserves' => $reserves]);
     }
 
-    public function new($id, Request $request){
+    public function new($id, ReservationRequest $request){
         $input = $request->all();
         $input['shop_id'] = intval($id); //Int
         $input['user_id'] = auth()->user()->id; // Int
@@ -37,15 +38,17 @@ class ReservationController extends Controller
     
     public function store(Request $request)
     {
-		$input = $request->session()->get("reserveData");
-		
-		if($request->has("back")){
-			return redirect()->route("shop.show", ['id' => $input['shop_id']])->with($input);
-		}
+        $input = $request->session()->get("reserveData");
+        $start_at = $input['date'].$input['time'];
+        $start_at_format = date('Y-m-d H:i', strtotime($start_at));
+        $input['start_at'] = $start_at_format;
+        unset($input['date']);
+        unset($input['time']);
+
+		if($request->has("back")) redirect()->route("shop.show", ['id' => $input['shop_id']])->with($input);
         
-		if(!$input){
-			return redirect()->route("shop.show", ['id' => $input['shop_id']]);
-		}
+		if(!$input) redirect()->route("shop.show", ['id' => $input['shop_id']]);
+        
         $reserve = Reservation::create($input);
 		$request->session()->forget("reserveData");
 

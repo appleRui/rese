@@ -14,7 +14,7 @@
   <header class="p-2 mb-2 border-bottom">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto h1 text-decoration-none">Rese</a>
+        <a href="{{ route('shop.index') }}" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto h1 text-decoration-none">Rese</a>
         <div class="dropdown">
           @if(!is_null(auth()->user()))
           <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -36,7 +36,8 @@
             </li>
           </ul>
           @else
-          <a href="{{ route('login') }}" class="nav-link px-2 link-secondary">ログイン</a>
+          <a href="{{ route('login') }}" class="d-inline-block nav-link px-2 link-secondary">ログイン</a>
+          <a href="{{ route('register') }}" class="d-inline-block nav-link px-2 link-secondary">サインイン</a>
           @endif
         </div>
       </div>
