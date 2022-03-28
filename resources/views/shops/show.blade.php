@@ -21,27 +21,54 @@
   }
 </style>
 
-<div class="shop-inner">
-  <div class="shop-inneer__img"></div>
-  <h2 class="mt-2 mb-2">{{ $shop->name }}</h2>
-  <p>{{ $shop->description }}</p>
-  <form class="card p-4" method="POST" action="{{ route('reserve.new', ['id' => $shop->id]) }}">
-    @csrf
-    <h3>予約</h3>
-    <div>
-      <label for="datetime-local">日付</label>
-      <input type="datetime-local" name="start_at" class="form-control" id="datetimeLocal" id="formCalrender" value="date">
-    </div>
-    <div class="mt-3">
-      <label for="select">予約人数</label>
-      <select class="form-control" id="select" name="num_of_users">
-        @foreach (range(1, 20) as $i)
-        <option value="{{ $i }}">{{ $i }}名</option>
-        @endforeach
-      </select>
-    </div>
-    <input type="submit" class="mt-3 btn btn-primary" value="予約する"></input>
-  </form>
+<div class=" row shop-inner">
+  <div class="col-8">
+    <div class="shop-inneer__img"></div>
+    <h2 class="mt-2 mb-2">{{ $shop->name }}</h2>
+    <p>{{ $shop->description }}</p>
+  </div>
+  <div class="col-4">
+    <form class="card p-4" method="POST" action="{{ route('reserve.new', ['id' => $shop->id]) }}">
+      @csrf
+      <h3>予約</h3>
+      <div>
+        <div class="mt-3">
+          @if ($errors->any())
+          <div class="alert alert-danger mt-3">
+            <ul>
+              @foreach ($errors->all() as $error)
+              <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
+          <label for="date">日付</label>
+          <input required type="date" id="start_date" name="date" class="form-control" id="date">
+        </div>
+        <div>
+          <label for="time">時間</label>
+          <input required type="time" step="900" name="time" class="form-control" id="time">
+        </div>
+        <label for="select">予約人数</label>
+        <select class="form-select" id="select" name="num_of_users">
+          @foreach (range(1, 20) as $i)
+          <option value="{{ $i }}">{{ $i }}名</option>
+          @endforeach
+        </select>
+      </div>
+      <input type="submit" class="mt-3 btn btn-primary" value="予約する"></input>
+    </form>
+  </div>
 </div>
+<script>
+  const today = new Date;
+  const dateForm = document.getElementById('start_date')
+  const timeForm = document.getElementById('start_time')
+  today.setDate(today.getDate())
+  var yyyy = today.getFullYear()
+  var mm = ("0" + (today.getMonth() + 1)).slice(-2)
+  var dd = ("0" + today.getDate()).slice(-2)
+  dateForm.value = yyyy + '-' + mm + '-' + dd
+</script>
 
 @endsection

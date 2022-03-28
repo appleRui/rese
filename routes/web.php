@@ -22,10 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/shop/new', [ShopController::class, 'new'])->name('shop.new');
     Route::post('/shop/create', [ShopController::class, 'create'])->name('shop.create');
 
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-    
     Route::get('/profile', function () {
         return view('profile');
     })->name('profile');
