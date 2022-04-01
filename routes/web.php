@@ -19,8 +19,8 @@ use App\Http\Controllers\ReservationController;
 
 Route::middleware('auth')->group(function () {
 
-    // Route::get('/shop/new', [ShopController::class, 'new'])->name('shop.new');
-    // Route::post('/shop/create', [ShopController::class, 'create'])->name('shop.create');
+    Route::get('/shop/new', [ShopController::class, 'new'])->name('shop.new');
+    Route::post('/shop/create', [ShopController::class, 'create'])->name('shop.create');
 
     Route::get('/profile', function () {
         return view('profile');
